@@ -95,7 +95,7 @@ const Profile = ({ onUpdateProfile, onLogout }) => {
 
   // get token 
   const getAuthToken = useCallback(() => {
-    return localStorage.getItem("token") || sessionStorage.getItem("token") ;
+    return localStorage.getItem("token") || sessionStorage.getItem("token");
   }, []);
 
   // api req 
@@ -378,7 +378,15 @@ const Profile = ({ onUpdateProfile, onLogout }) => {
                 <div className="space-y-4" >
                   <div>
                     <p className={profileStyles.label} > Full Name </p>
-                    <p className="font-medium text-gray-800" >{user.name}</p>
+                    <p className="font-medium text-gray-800">
+                      {user?.name
+                        ?.split(" ")
+                        .map(
+                          (word) =>
+                            word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                        )
+                        .join(" ") || "User"}
+                    </p>
                   </div>
                   <div>
                     <p className={profileStyles.label} > Email Address </p>
@@ -397,19 +405,19 @@ const Profile = ({ onUpdateProfile, onLogout }) => {
                 <div className={profileStyles.securityItem} >
                   <div >
                     <p className={profileStyles.securityText} >Password</p>
-                    </div>
-                    <button onClick={() => setShowPasswordModal(true)}
-                      className={profileStyles.changeButton}
-                      disabled={loading} >
-                        Change
-                    </button>
+                  </div>
+                  <button onClick={() => setShowPasswordModal(true)}
+                    className={profileStyles.changeButton}
+                    disabled={loading} >
+                    Change
+                  </button>
                 </div>
                 <button onClick={handleLogout} className={`${profileStyles.buttonPrimary} mt-6 w-full
                  hover:opacity-90 transition-opacity `}
-                 disabled={loading} >
-                  {loading ? "Processing...":"Logout"}
-                 </button>
-                
+                  disabled={loading} >
+                  {loading ? "Processing..." : "Logout"}
+                </button>
+
               </div>
             </div>
           </div>
@@ -431,7 +439,7 @@ const Profile = ({ onUpdateProfile, onLogout }) => {
         <div className={profileStyles.modalContent}>
           <div className={profileStyles.modalHeader}>
             <h3 className={profileStyles.modalTitle}>Change Password</h3>
-            <button 
+            <button
               onClick={closePasswordModal}
               className="text-gray-500 hover:text-gray-800 disabled:opacity-50"
               disabled={loading}
@@ -439,7 +447,7 @@ const Profile = ({ onUpdateProfile, onLogout }) => {
               <X className="w-6 h-6" />
             </button>
           </div>
-          
+
           <form onSubmit={handlePasswordSubmit} className="space-y-4 lg:-mx-20">
             <PasswordInput
               name="current"
@@ -451,7 +459,7 @@ const Profile = ({ onUpdateProfile, onLogout }) => {
               onChange={handlePasswordChange}
               disabled={loading}
             />
-            
+
             <PasswordInput
               name="new"
               label="New Password"
@@ -462,7 +470,7 @@ const Profile = ({ onUpdateProfile, onLogout }) => {
               onChange={handlePasswordChange}
               disabled={loading}
             />
-            
+
             <PasswordInput
               name="confirm"
               label="Confirm New Password"
@@ -473,7 +481,7 @@ const Profile = ({ onUpdateProfile, onLogout }) => {
               onChange={handlePasswordChange}
               disabled={loading}
             />
-            
+
             <div className="flex gap-3 pt-4">
               <button
                 type="submit"
@@ -494,7 +502,7 @@ const Profile = ({ onUpdateProfile, onLogout }) => {
           </form>
         </div>
       </Modal>
-   
+
     </div>
   );
 };

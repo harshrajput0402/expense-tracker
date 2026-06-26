@@ -42,7 +42,7 @@ function Navbar({ user: propUser, onLogout }) {
   }, [propUser]);
 
   const toggleMenu = () => { setMenuOpen((prev) => !prev); };
-  const handleLogout =()=>{
+  const handleLogout = () => {
     setMenuOpen(false);
     localStorage.removeItem("token");
     onLogout?.();
@@ -50,14 +50,14 @@ function Navbar({ user: propUser, onLogout }) {
   }
 
   const navigate = useNavigate();
-// close the toggle menu if you click outside the menu 
-useEffect(() => {
+  // close the toggle menu if you click outside the menu 
+  useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setMenuOpen(false);
       }
     };
-    
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
@@ -86,7 +86,11 @@ useEffect(() => {
                 <div className={navbarStyles.statusIndicator}></div>
               </div>
               <div className={navbarStyles.userTextContainer}>
-                <p className={navbarStyles.userName}>{user?.name || "User"}</p>
+                <p className={navbarStyles.userName}>
+                  {user?.name
+                    ? user.name.charAt(0).toUpperCase() + user.name.slice(1)
+                    : "User"}
+                </p>
                 <p className={navbarStyles.userEmail}> {user?.email || "user@expansetracker.com"}</p>
               </div>
               <ChevronDown className={navbarStyles.chevronIcon(menuOpen)}></ChevronDown>
@@ -118,7 +122,7 @@ useEffect(() => {
               <div className={navbarStyles.menuItemBorder}>
                 <button onClick={handleLogout} className={navbarStyles.logoutButton}>
                   {/* <LogOut className='w-4 h-4'/> */}
-                  <LogOut className='w-4 h-4'/>
+                  <LogOut className='w-4 h-4' />
                   <span> Log out</span>
                 </button>
               </div>

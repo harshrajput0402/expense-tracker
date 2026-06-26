@@ -87,7 +87,7 @@ const ExpensePage = () => {
     type: "expense",
     category: "Food",
   });
-  const [ setOverview] = useState({
+  const [overview, setOverview ] = useState({
     totalExpense: 0,
     averageExpense: 0,
     numberOfTransactions: 0,
@@ -124,8 +124,6 @@ const ExpensePage = () => {
         range: payload.range ?? range,
       });
     } catch (err) {
-        ;
-        
       console.error("Failed to fetch expense overview:", err);
     }
   }, [timeFrame, getAuthHeaders]);

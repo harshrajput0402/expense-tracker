@@ -363,14 +363,14 @@ const Layout = ({ onLogout, user }) => {
             <div className={styles.statCards.cardHeader}>
               <div>
                 <p className={styles.statCards.cardTitle}>Saving Rate</p>
-                <p className={styles.statCards.cardValue}>{stats.savingRate}%</p>
+                <p className={styles.statCards.cardValue}>{stats.savingsRate}%</p>
               </div>
               <div className={styles.statCards.iconContainer("blue")} >
                 <PiggyBank className={styles.statCards.icon("blue")} />
               </div>
             </div>
             <p className={styles.statCards.cardFooter} >
-              {getSavingsRating(stats.savingRate)}
+              {getSavingsRating(stats.savingsRate)}
             </p>
           </div>
         </div>

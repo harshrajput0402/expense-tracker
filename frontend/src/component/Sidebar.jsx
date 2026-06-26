@@ -19,7 +19,7 @@ function Sidebar({ user, isCollapsed, setIsCollapsed }) {
     const sidebarRef = useRef(null);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [activeHover, setActivHover] = useState(null);
-    const[ActiveHover ,setActiveHover] = useState(null);
+    const [ActiveHover, setActiveHover] = useState(null);
 
     const { name: username = "User", email = "user@example.com" } = user || {};
     const initial = username.charAt(0).toUpperCase();
@@ -119,7 +119,9 @@ function Sidebar({ user, isCollapsed, setIsCollapsed }) {
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -10 }}
                             >
-                                <h2 className="text-sm font-bold text-gray-800 truncate">{username}</h2>
+                                <h2 className="text-lg font-bold text-gray-800">
+                                    {username?.charAt(0).toUpperCase() + username?.slice(1)}
+                                </h2>
                                 <p className=" text-xs text-gray-500 truncate" >{email}</p>
                             </motion.div>
                             )}
@@ -135,14 +137,7 @@ function Sidebar({ user, isCollapsed, setIsCollapsed }) {
                         isCollapsed ? sidebarStyles.footerContainer.collapsed
                             : sidebarStyles.footerContainer.expanded
                     )} >
-                        <Link className={cn(
-                            sidebarStyles.footerLink.base,
-                            isCollapsed && sidebarStyles.footerLink.collapsed,
-                        )}
-                            to="https://www.hexagondigitalservices.com/contact" >
-                            <HelpCircle size={20} className=" text-gray-500 "></HelpCircle>
-                            {!isCollapsed && <span>Support</span>}
-                        </Link>
+
 
                         <button onClick={handleLogout} className={cn(
                             sidebarStyles.logoutButton.base,
@@ -194,7 +189,9 @@ function Sidebar({ user, isCollapsed, setIsCollapsed }) {
                                             {initial}
                                         </div>
                                         <div>
-                                            <h2 className="text-lg font-bold text-gray-800" >{username}</h2>
+                                            <h2 className="text-lg font-bold text-gray-800">
+                                                {username?.charAt(0).toUpperCase() + username?.slice(1)}
+                                            </h2>
                                             <p className="text-sm text-gray-500" >{email}   </p>
                                         </div>
                                     </div>
@@ -228,16 +225,10 @@ function Sidebar({ user, isCollapsed, setIsCollapsed }) {
                                     </ul>
                                 </div>
                                 <div className={sidebarStyles.mobileFooter}>
-                                    <Link onClick={()=>{
-                                        setMobileOpen(false)
-                                    }} to="https://www.hexagondigitalservices.com/contact" className={sidebarStyles.mobileFooterLink} >
-                                        <HelpCircle size={20} className=" text-gray-500 "></HelpCircle>
-                                        <span>Support</span>
-                                    </Link>
+
                                     <button onClick={handleLogout} className={sidebarStyles.mobileLogoutButton} >
                                         <LogOut size={20} className=" text-gray-500 "></LogOut>
                                         <span>Logout</span>
-
                                     </button>
                                 </div>
                             </div>

@@ -170,7 +170,7 @@ export async function downloadexpenseData(req, res) {
 export async function getExpenseOverview(req,res) {
 try {
         const userId = req.user._id;
-        const { range = "monthly" } = req.body;
+       const range = req.query?.range || "monthly";
         const { start, end } = getDateRange(range);
 
         const expenses = await expenseModel.find({

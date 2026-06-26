@@ -44,7 +44,7 @@ const TransactionItem = ({
     return !nextErrors.description && !nextErrors.amount;
   };
 
-  const handleSaveClicl = () => {
+  const handleSaveClick = () => {
     if (validate()) {
       setErrors({ description: "", amount: "" });
       onSave();

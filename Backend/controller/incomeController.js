@@ -162,7 +162,7 @@ export async function downloadExcel(req, res) {
 export async function getIncomeOverview(req, res) {
     try {
         const userId = req.user._id;
-        const { range = "monthly" } = req.body;
+        const range = req.query?.range || "monthly";
         const { start, end } = getDateRange(range);
 
         const incomes = await incomeModel.find({
@@ -179,7 +179,7 @@ export async function getIncomeOverview(req, res) {
         const recentTransactions = incomes.slice(0, 9);
         res.json({
             success:true,
-            date:{
+            data:{
                 totalIncome,
                 averageIncome,
                 numberOfTransactions,
