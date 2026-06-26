@@ -196,3 +196,128 @@ Backend
 ```
 http://localhost:3000
 ```
+# API Routes
+
+All backend APIs are prefixed with:
+
+```
+/api
+```
+
+---
+
+## Authentication Routes
+
+Base URL
+
+```
+/api/user
+```
+
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| POST | `/register` | Register a new user | ❌ |
+| POST | `/login` | Login user | ❌ |
+| GET | `/profile` | Get logged-in user profile | ✅ |
+| PUT | `/update-profile` | Update user profile | ✅ |
+| PUT | `/update-password` | Change user password | ✅ |
+
+---
+
+## Income Routes
+
+Base URL
+
+```
+/api/income
+```
+
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| POST | `/add` | Add new income | ✅ |
+| GET | `/get` | Get all income | ✅ |
+| PUT | `/update/:id` | Update income | ✅ |
+| DELETE | `/delete/:id` | Delete income | ✅ |
+| GET | `/overview` | Income analytics | ✅ |
+| GET | `/downloadexcelfile` | Download income as Excel | ✅ |
+
+---
+
+## Expense Routes
+
+Base URL
+
+```
+/api/expense
+```
+
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| POST | `/add` | Add new expense | ✅ |
+| GET | `/get` | Get all expenses | ✅ |
+| PUT | `/update/:id` | Update expense | ✅ |
+| DELETE | `/delete/:id` | Delete expense | ✅ |
+| GET | `/overview` | Expense analytics | ✅ |
+| GET | `/download` | Download expense as Excel | ✅ |
+
+---
+
+## Dashboard Routes
+
+Base URL
+
+```
+/api/dashboard
+```
+
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| GET | `/` | Fetch dashboard summary | ✅ |
+
+---
+
+## Authentication
+
+Protected routes require a JWT token.
+
+Example Header
+
+```http
+Authorization: Bearer <your_jwt_token>
+```
+# Frontend Routes
+
+The application uses **React Router DOM** for client-side routing.
+
+| Route | Component | Access |
+|--------|-----------|--------|
+| `/login` | Login Page | Public |
+| `/signup` | Signup Page | Public |
+| `/` | Dashboard | Protected |
+| `/income` | Income Management | Protected |
+| `/expense` | Expense Management | Protected |
+| `/profile` | User Profile | Protected |
+
+---
+
+## Route Protection
+
+The application uses a **ProtectedRoute** component to secure authenticated pages.
+
+Protected routes include:
+
+- Dashboard
+- Income
+- Expense
+- Profile
+
+If the user is **not authenticated**, they are automatically redirected to:
+
+```
+/login
+```
+
+Unknown routes are also redirected based on authentication status:
+
+- Authenticated user → `/`
+- Unauthenticated user → `/login`
