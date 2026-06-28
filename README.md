@@ -218,9 +218,9 @@ Base URL
 |--------|----------|-------------|-----------|
 | POST | `/register` | Register a new user | ❌ |
 | POST | `/login` | Login user | ❌ |
-| GET | `/profile` | Get logged-in user profile | ✅ |
-| PUT | `/update-profile` | Update user profile | ✅ |
-| PUT | `/update-password` | Change user password | ✅ |
+| GET | `/get` | Get logged-in user profile | ✅ |
+| PUT | `/profile` | Update user profile | ✅ |
+| PUT | `/password` | Change user password | ✅ |
 
 ---
 
