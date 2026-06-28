@@ -301,24 +301,28 @@ const ExpensePage = () => {
   };
 
   // Edit expense -> PUT /expense/update/:id
-  const handleEditTransaction = async () => {
-    if (!editingId || !editForm.description || !editForm.amount) return;
+const handleEditTransaction = async () => {
+  if (!editingId || !editForm.description || !editForm.amount) return;
 
-    try {
-      const payload = {
-        description: editForm.description.trim(),
-        amount: parseFloat(editForm.amount),
-        category: editForm.category,
-        date: toIsoWithClientTime(editForm.date),
-      };
+  try {
+    const payload = {
+      description: editForm.description.trim(),
+      amount: parseFloat(editForm.amount),
+      category: editForm.category,
+      date: toIsoWithClientTime(editForm.date),
+    };
 
-      await handleApiRequest('put', `{API_BASE}/expense/update/${editingId}`, payload);
-      setEditingId(null);
-    } catch (err) {
-      // Error handled in handleApiRequest
-    }
-  };
+    await handleApiRequest(
+      "put",
+      `/expense/update/${editingId}`,
+      payload
+    );
 
+    setEditingId(null);
+  } catch (err) {
+    // Error handled in handleApiRequest
+  }
+};
   // Delete expense -> DELETE /expense/delete/:id
   const handleDeleteTransaction = async (id) => {
     if (!id || !window.confirm("Are you sure you want to delete this expense?")) return;
